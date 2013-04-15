@@ -1,0 +1,45 @@
+//
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+int main(){
+//void Primenumber_calc(){
+
+  int max;
+	bool is_Prime = true;
+	cout << "Enter a number and then this program \nwill display all prime numbers Leading up to it " << endl;
+	cin >> max;
+
+	
+	ofstream Prime_numbers("Prime_numbers.txt");
+
+	if(Prime_numbers.is_open()){
+		cout << endl;
+
+		for(int prime_check1 = 2; prime_check1 <= max; prime_check1++){
+
+			is_Prime = true;
+			for(int prime_check2 = 2; prime_check2 < prime_check1; prime_check2++){
+
+				if((prime_check1 % prime_check2) == 0){
+					is_Prime = false;
+				}
+			}
+			if(is_Prime){
+				cout << prime_check1 << ", ";
+				Prime_numbers << prime_check1 << ", ";
+			}
+		}
+		cout << "\n\n";
+
+	}else{// END OF FILE IO
+		cout << "Unable to write to File" << endl;
+	}
+	Prime_numbers.close();
+
+
+
+	system("pause");
+}
